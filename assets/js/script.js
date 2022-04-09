@@ -255,7 +255,7 @@ var loadTasks = function() {
         
         // console.log(listItemEl);
 
-       var taskInfoEl = document.createElement("div");
+       taskInfoEl = document.createElement("div");
         taskInfoEl.className = "task-info";
         taskInfoEl.innerHTML = "<h3 class='task-name'>" + tasks[i].name + 
         "</h3><span class='task-type'>" + tasks[i].type + "</span>";
