@@ -190,7 +190,8 @@ var editTask = function(taskId) {
   document.querySelector("input[name='task-name']").value = taskName;
   document.querySelector("select[name='task-type']").value = taskType;
 
-  // set data attribute to the form with a value of the task's id so it knows which one is being edited
+  // set data attribute to the form with a value of the task's 
+//   id so it knows which one is being edited
   formEl.setAttribute("data-task-id", taskId);
   // update form's button to reflect editing a task rather than creating a new one
   formEl.querySelector("#save-task").textContent = "Save Task";
@@ -227,6 +228,49 @@ var saveTasks = function() {
 
 };
 
+var loadTasks = function() {
+
+    var tasksNullArr = [];
+
+    tasks = localStorage.getItem("task");
+    console.log(tasks);
+
+    if (tasks === null) {
+        tasks = tasksNullArr;
+        return false;
+    }
+
+    tasks = JSON.parse(tasks);
+    // console.log(tasks);
+
+    for (var i = 0; i < tasks.length; i++) {
+        // console.log(tasks[i]);
+        
+        tasks[i].id = taskIdCounter;
+        // console.log(tasks[i]);
+
+        listItemEl = document.createElement("li");
+        listItemEl.className = "task-item";
+        listItemEl.setAttribute("data-task-id", tasks[i].id);
+        
+        // console.log(listItemEl);
+
+       var taskInfoEl = document.createElement("div");
+        taskInfoEl.className = "task-info";
+        taskInfoEl.innerHTML = "<h3 class='task-name'>" + tasks[i].name + 
+        "</h3><span class='task-type'>" + tasks[i].type + "</span>";
+        taskInfoEl.appendChild(listItemEl);
+
+        console.log(listItemEl);
+
+        var taskActionsEl = createTaskActions(tasks[i].id);
+        taskActionsEl.appendChild(listItemEl);
+
+        console.log(listItemEl);
+    }
+
+};
+
 // Create a new task
 formEl.addEventListener("submit", taskFormHandler);
 
@@ -235,3 +279,5 @@ pageContentEl.addEventListener("click", taskButtonHandler);
 
 // for changing the status
 pageContentEl.addEventListener("change", taskStatusChangeHandler);
+
+loadTasks();
