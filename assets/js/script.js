@@ -249,13 +249,13 @@ var loadTasks = function() {
         tasks[i].id = taskIdCounter;
         // console.log(tasks[i]);
 
-        listItemEl = document.createElement("li");
+        var listItemEl = document.createElement("li");
         listItemEl.className = "task-item";
         listItemEl.setAttribute("data-task-id", tasks[i].id);
         
         // console.log(listItemEl);
 
-       taskInfoEl = document.createElement("div");
+        var taskInfoEl = document.createElement("div");
         taskInfoEl.className = "task-info";
         taskInfoEl.innerHTML = "<h3 class='task-name'>" + tasks[i].name + 
         "</h3><span class='task-type'>" + tasks[i].type + "</span>";
